@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4;
+            color: #333333;
+        }
+    .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+    .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f7a81b;
+            transition: width 0.3s;
+        }
+    .nav-link:hover::after,.nav-link.active::after {
+            width: 100%;
+        }
+    .btn-primary {
+            background-color: #005daa;
+            color: white;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+    .btn-primary:hover {
+            background-color: #004b8d;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-[#005daa]">Rotary Club of Bath</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link text-gray-700 hover:text-[#005daa]">Home</a>
+                <a href="about-the-club.html" class="nav-link active text-gray-700 hover:text-[#005daa]">About the Club</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-[#005daa]">Upcoming Events</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-[#005daa]">Join Us</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-[#005daa]">Member Zone</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="index.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Home</a>
+            <a href="about-the-club.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">About the Club</a>
+            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Upcoming Events</a>
+            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Join Us</a>
+            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Member Zone</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="bg-[#005daa] text-white py-16 md:py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight">About the Rotary Club of Bath</h1>
+                <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Discover our mission, history, and how we make a difference in Bath and beyond.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+              <script src="https://js-eu1.hsforms.net/forms/embed/25484918.js" defer></script>
+<div class="hs-form-frame" data-region="eu1" data-form-id="a3ccafa0-a9a7-47db-8cde-694ad36f12c6" data-portal-id="25484918"></div>
+            </div>
+        </section>
+
+  
+    </main>
+
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Rotary Club of Bath</h3>
+                    <p class="text-gray-400">Serving the community of Bath, UK.</p>
+                    <p class="text-gray-400 mt-2">Charity No: 267664</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="about-the-club.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Events</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Join Rotary</a></li>
+                        <li><a href="https://www.facebook.com/bathrotary" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">Find us on Facebook</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <p class="text-gray-400">Interested in learning more? We'd love to hear from you.</p>
+                    <a href="#" class="inline-block mt-4 btn-primary text-sm font-bold py-2 px-4 rounded">Get In Touch</a>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-gray-700 text-center text-gray-500 text-sm">
+                <p>&copy; <span id="year"></span> Rotary Club of Bath. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            document.getElementById('year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
