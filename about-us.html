@@ -43,11 +43,11 @@
         }
 
         /* Timeline specific styles */
-     .timeline {
+        .timeline {
             position: relative;
             padding: 20px 0;
         }
-     .timeline::before {
+        .timeline::before {
             content: '';
             position: absolute;
             left: 50%;
@@ -57,32 +57,30 @@
             background: #cbd5e0; /* Light gray line */
             transform: translateX(-50%);
         }
-     .timeline-item {
+        .timeline-item {
             display: flex;
             margin-bottom: 40px;
             position: relative;
+            align-items: center; /* Vertically align items */
         }
-     .timeline-item:nth-child(odd) {
-            flex-direction: row-reverse;
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse; /* Alternate content box side */
         }
-     .timeline-item-content {
+        .timeline-item-content {
             width: calc(50% - 30px); /* 50% width minus half of dot size */
             padding: 20px;
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: relative;
-            opacity: 0; /* Initial state for animation */
-            transform: translateY(20px); /* Initial state for animation */
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-     .timeline-item:nth-child(even).timeline-item-content {
-            margin-right: 30px;
+        .timeline-item:nth-child(even) .timeline-item-content {
+            margin-right: 30px; /* Push content to the left of the center line */
         }
-     .timeline-item:nth-child(odd).timeline-item-content {
-            margin-left: 30px;
+        .timeline-item:nth-child(odd) .timeline-item-content {
+            margin-left: 30px; /* Push content to the right of the center line */
         }
-     .timeline-item-dot {
+        .timeline-item-dot {
             width: 20px;
             height: 20px;
             background-color: #005daa; /* Rotary Blue */
@@ -94,53 +92,37 @@
             transform: translate(-50%, -50%);
             z-index: 1;
         }
-     .timeline-item-date {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+        /* The year is now inside the content box, so its positioning is relative to the content box */
+        .timeline-item-date {
             font-weight: bold;
             color: #005daa;
-            font-size: 1.125rem; /* text-lg */
-            opacity: 0; /* Initial state for animation */
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-     .timeline-item:nth-child(even).timeline-item-date {
-            left: calc(50% + 20px); /* Adjust position for even items */
-        }
-     .timeline-item:nth-child(odd).timeline-item-date {
-            right: calc(50% + 20px); /* Adjust position for odd items */
-        }
-
-        /* Animation class */
-     .timeline-item.is-visible.timeline-item-content,
-     .timeline-item.is-visible.timeline-item-date {
-            opacity: 1;
-            transform: translateY(0);
+            font-size: 2.5rem; /* Made years much larger */
+            margin-bottom: 10px; /* Space below the year */
+            display: block; /* Ensure it takes its own line */
+            text-align: center; /* Center the year within its box */
         }
 
         @media (max-width: 768px) {
-         .timeline::before {
+            .timeline::before {
                 left: 20px;
                 transform: translateX(0);
             }
-         .timeline-item {
-                flex-direction: row!important;
+            .timeline-item {
+                flex-direction: row !important; /* Ensure it's always row for mobile */
             }
-         .timeline-item-content {
+            .timeline-item-content {
                 width: calc(100% - 60px);
-                margin-left: 40px!important;
-                margin-right: 0!important;
+                margin-left: 40px !important;
+                margin-right: 0 !important;
             }
-         .timeline-item-dot {
+            .timeline-item-dot {
                 left: 20px;
                 transform: translateX(-50%);
             }
-         .timeline-item-date {
-                position: static;
-                transform: none;
-                margin-bottom: 10px;
-                text-align: left;
-                padding-left: 40px; /* Align with content */
+            .timeline-item-date {
+                font-size: 1.5rem; /* Adjust font size for mobile */
+                margin-bottom: 5px; /* Smaller margin on mobile */
+                text-align: left; /* Align left on mobile */
             }
         }
     </style>
@@ -220,49 +202,49 @@
                 
                 <div class="timeline max-w-4xl mx-auto">
                     <div class="timeline-item">
-                        <div class="timeline-item-date">1912</div>
                         <div class="timeline-item-dot"></div>
                         <div class="timeline-item-content">
+                            <span class="timeline-item-date">1912</span>
                             <h3 class="text-xl font-semibold text-[#005daa] mb-2">Rotary Arrives in Europe</h3>
                             <p class="text-gray-700">The Rotary Club of London becomes the first Rotary club chartered in Europe, marking Rotary's intercontinental expansion.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-item-date">1913-1914</div>
                         <div class="timeline-item-dot"></div>
                         <div class="timeline-item-content">
+                            <span class="timeline-item-date">1913-1914</span>
                             <h3 class="text-xl font-semibold text-[#005daa] mb-2">Growth Across Great Britain and Ireland</h3>
                             <p class="text-gray-700">Several more Rotary clubs are chartered across England, Ireland, and Scotland, including Glasgow, Belfast, Dublin, Edinburgh, Manchester, Liverpool, and Birmingham.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-item-date">1914</div>
                         <div class="timeline-item-dot"></div>
                         <div class="timeline-item-content">
+                            <span class="timeline-item-date">1914</span>
                             <h3 class="text-xl font-semibold text-[#005daa] mb-2">Formation of BARC</h3>
                             <p class="text-gray-700">The British Association of Rotary Clubs (BARC) is created in London to enhance camaraderie, unity, and standardize practices among UK Rotary clubs.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-item-date">1921</div>
                         <div class="timeline-item-dot"></div>
                         <div class="timeline-item-content">
+                            <span class="timeline-item-date">1921</span>
                             <h3 class="text-xl font-semibold text-[#005daa] mb-2">Rotary Club of Bath Founded</h3>
                             <p class="text-gray-700">The Rotary Club of Bath, UK, is officially founded, joining the growing network of clubs dedicated to service across Great Britain and Ireland.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-item-date">2021</div>
                         <div class="timeline-item-dot"></div>
                         <div class="timeline-item-content">
+                            <span class="timeline-item-date">2021</span>
                             <h3 class="text-xl font-semibold text-[#005daa] mb-2">Centenary Celebration</h3>
                             <p class="text-gray-700">The Rotary Club of Bath proudly celebrates 100 years of dedicated service to the local community and contributions to Rotary's global initiatives.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-item-date">Present Day</div>
                         <div class="timeline-item-dot"></div>
                         <div class="timeline-item-content">
+                            <span class="timeline-item-date">Present Day</span>
                             <h3 class="text-xl font-semibold text-[#005daa] mb-2">Evolution to RIBI</h3>
                             <p class="text-gray-700">BARC evolves into Rotary International in Great Britain and Ireland (RIBI), which remains the only territorial unit within Rotary International today, fostering a strong network of clubs across the UK and Ireland.</p>
                         </div>
@@ -324,28 +306,6 @@
             });
             
             document.getElementById('year').textContent = new Date().getFullYear();
-
-            // Timeline animation functionality
-            const timelineItems = document.querySelectorAll('.timeline-item');
-
-            const observerOptions = {
-                root: null, // viewport
-                rootMargin: '0px',
-                threshold: 0.2 // Trigger when 20% of the item is visible
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target); // Stop observing once visible
-                    }
-                });
-            }, observerOptions);
-
-            timelineItems.forEach(item => {
-                observer.observe(item);
-            });
         });
     </script>
 </body>
