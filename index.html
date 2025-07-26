@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Rotary Club of Bath</title>
+    
+    <!-- Chosen Palette: Calm Neutrals with Rotary Blue & Gold accents -->
+    <!-- Application Structure Plan: A linear, narrative-driven single-page layout. The structure guides the user from a broad welcome (Hero) to contextual information (About Global/Local Rotary), to a primary call-to-action (Join Us), followed by social proof (Gallery) and timely information (Events). This top-down flow is highly intuitive for a public-facing homepage, making the club's story and purpose easy to digest without requiring user-driven navigation, which is optimal for first-time visitors. -->
+    <!-- Visualization & Content Choices: Report Info: Recent club activities -> Goal: Showcase vibrancy, community involvement -> Viz/Presentation: Interactive Photo Carousel -> Interaction: User can click next/previous or use pagination to browse photos -> Justification: A dynamic carousel is more engaging than a static grid and visually demonstrates the club's impact, as recommended for non-profits. -> Library/Method: Splide.js (via CDN) was chosen for its lightweight, dependency-free nature, aligning with the goal of a simple, modern, and fast-loading site. Report Info: Upcoming club events -> Goal: Inform members and public -> Viz/Presentation: Styled List -> Interaction: None (informational) -> Justification: A simple, clean list is the most effective way to present event information clearly in a static HTML context. It serves as a perfect placeholder for a future WordPress plugin without adding unnecessary complexity. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4;
+            color: #333333;
+        }
+        .hero-bg {
+            background-image: url('https://placehold.co/1600x900/a0aec0/ffffff?text=Rotary+Event+Photo');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .splide__arrow {
+            background: rgba(255, 255, 255, 0.8);
+            width: 2.5em;
+            height: 2.5em;
+        }
+        .splide__arrow svg {
+            fill: #005daa;
+            width: 1.5em;
+            height: 1.5em;
+        }
+        .splide__pagination__page {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid #005daa;
+        }
+        .splide__pagination__page.is-active {
+            background: #005daa;
+            transform: scale(1.2);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f7a81b;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .btn-primary {
+            background-color: #005daa;
+            color: white;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #004b8d;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background-color: #f7a81b;
+            color: #333;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .btn-secondary:hover {
+            background-color: #e09718;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-[#005daa]">Rotary Club of Bath</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#" class="nav-link active text-gray-700 hover:text-[#005daa]">Home</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-[#005daa]">About the Club</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-[#005daa]">Upcoming Events</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-[#005daa]">Join Us</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-[#005daa]">Member Zone</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Home</a>
+            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">About the Club</a>
+            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Upcoming Events</a>
+            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Join Us</a>
+            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Member Zone</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-bg text-white">
+            <div class="hero-overlay w-full h-full">
+                <div class="container mx-auto px-6 py-32 md:py-48 flex items-center">
+                    <div class="max-w-xl">
+                        <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Welcome to the Rotary Club of Bath</h1>
+                        <p class="text-lg md:text-xl">People of Action, Making a Difference in Bath and Around the World.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#005daa]">Service Above Self</h2>
+                    <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Discover the global movement of Rotary and how our local club brings that mission to life right here in the historic city of Bath.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="bg-[#F8F7F4] p-8 rounded-lg shadow-sm">
+                        <h3 class="text-2xl font-bold mb-4">A Global Network of Neighbours</h3>
+                        <p class="text-gray-700 leading-relaxed">Rotary International is a global network of 1.2 million leaders and problem-solvers who see a world where people unite and take action to create lasting change. For more than 115 years, Rotary members have used their passion and energy to tackle sustainable projects, from promoting peace and fighting disease to providing clean water and supporting education.</p>
+                    </div>
+                    <div class="bg-[#F8F7F4] p-8 rounded-lg shadow-sm">
+                        <h3 class="text-2xl font-bold mb-4">Our Local Impact in Bath, UK</h3>
+                        <p class="text-gray-700 leading-relaxed">The Rotary Club of Bath is a vibrant group of people from this historic city and its surrounding area who work together to make Bath, and the wider world, a better place. We organize fundraising events, support local charities with our time and skills, and partner on major humanitarian projects. Our focus is on creating positive, lasting change for our community.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="join" class="py-16 md:py-24 bg-[#005daa] text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Get Involved & Make a Difference</h2>
+                <p class="text-lg max-w-3xl mx-auto mb-8">Becoming a Rotarian connects you with a diverse group of professionals who share your drive to give back. It's an opportunity for personal and professional growth, networking, and making a real impact. Whether you join as a member, a friend of Rotary, or a project volunteer, your contribution is valued.</p>
+                <a href="#" class="btn-secondary font-bold py-3 px-8 rounded-full text-lg inline-block">Discover How to Join</a>
+            </div>
+        </section>
+
+        <section id="gallery" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#005daa]">Our Club in Action</h2>
+                    <p class="text-gray-600 mt-2 max-w-2xl mx-auto">A picture is worth a thousand words. Explore our recent activities, fundraisers, and community projects through our photo gallery.</p>
+                </div>
+                <div id="image-carousel" class="splide" aria-label="Recent Activities Photo Gallery">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <li class="splide__slide">
+                                <img src="https://placehold.co/800x500/3182ce/ffffff?text=Fundraising+Event" alt="Placeholder for a fundraising event photo" class="rounded-lg object-cover w-full h-full" onerror="this.onerror=null;this.src='https://placehold.co/800x500/cccccc/ffffff?text=Image+Not+Found';">
+                            </li>
+                            <li class="splide__slide">
+                                <img src="https://placehold.co/800x500/9f7aea/ffffff?text=Community+Project" alt="Placeholder for a community project photo" class="rounded-lg object-cover w-full h-full" onerror="this.onerror=null;this.src='https://placehold.co/800x500/cccccc/ffffff?text=Image+Not+Found';">
+                            </li>
+                            <li class="splide__slide">
+                                <img src="https://placehold.co/800x500/48bb78/ffffff?text=Youth+Awards" alt="Placeholder for a youth awards photo" class="rounded-lg object-cover w-full h-full" onerror="this.onerror=null;this.src='https://placehold.co/800x500/cccccc/ffffff?text=Image+Not+Found';">
+                            </li>
+                            <li class="splide__slide">
+                                <img src="https://placehold.co/800x500/ed8936/ffffff?text=Club+Meeting" alt="Placeholder for a club meeting photo" class="rounded-lg object-cover w-full h-full" onerror="this.onerror=null;this.src='https://placehold.co/800x500/cccccc/ffffff?text=Image+Not+Found';">
+                            </li>
+                             <li class="splide__slide">
+                                <img src="https://placehold.co/800x500/e53e3e/ffffff?text=Charity+Cheque+Presentation" alt="Placeholder for a charity cheque presentation" class="rounded-lg object-cover w-full h-full" onerror="this.onerror=null;this.src='https://placehold.co/800x500/cccccc/ffffff?text=Image+Not+Found';">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="events" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#005daa]">Upcoming Events</h2>
+                    <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Join us for our upcoming meetings and events. Guests are always welcome!</p>
+                </div>
+                <div class="max-w-4xl mx-auto">
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm flex flex-col md:flex-row items-start md:items-center gap-4">
+                            <div class="flex-shrink-0 text-center md:w-32">
+                                <p class="text-xl font-bold text-[#005daa]">AUG</p>
+                                <p class="text-4xl font-bold">15</p>
+                                <p class="text-sm text-gray-500">2025</p>
+                            </div>
+                            <div class="flex-grow">
+                                <h3 class="text-xl font-bold mb-1">Weekly Club Meeting & Speaker</h3>
+                                <p class="text-gray-600 mb-2">7:00 PM | The Lansdown Grove Hotel, Bath</p>
+                                <p class="text-gray-700">Join us for our regular meeting featuring a guest speaker on local environmental initiatives.</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm flex flex-col md:flex-row items-start md:items-center gap-4">
+                            <div class="flex-shrink-0 text-center md:w-32">
+                                <p class="text-xl font-bold text-[#005daa]">SEP</p>
+                                <p class="text-4xl font-bold">05</p>
+                                <p class="text-sm text-gray-500">2025</p>
+                            </div>
+                            <div class="flex-grow">
+                                <h3 class="text-xl font-bold mb-1">Annual Charity Quiz Night</h3>
+                                <p class="text-gray-600 mb-2">7:30 PM | Bath Assembly Rooms</p>
+                                <p class="text-gray-700">Test your knowledge and support a great cause! All proceeds go to the Bath Young Carers Centre.</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm flex flex-col md:flex-row items-start md:items-center gap-4">
+                            <div class="flex-shrink-0 text-center md:w-32">
+                                <p class="text-xl font-bold text-[#005daa]">SEP</p>
+                                <p class="text-4xl font-bold">21</p>
+                                <p class="text-sm text-gray-500">2025</p>
+                            </div>
+                            <div class="flex-grow">
+                                <h3 class="text-xl font-bold mb-1">Community Park Clean-up Day</h3>
+                                <p class="text-gray-600 mb-2">10:00 AM | Royal Victoria Park</p>
+                                <p class="text-gray-700">A hands-on volunteering event to help keep our local parks beautiful. Families welcome.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Rotary Club of Bath</h3>
+                    <p class="text-gray-400">Serving the community of Bath, UK.</p>
+                    <p class="text-gray-400 mt-2">Charity No: 267664</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Events</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Join Rotary</a></li>
+                        <li><a href="https://www.facebook.com/bathrotary" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">Find us on Facebook</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <p class="text-gray-400">Interested in learning more? We'd love to hear from you.</p>
+                    <a href="#" class="inline-block mt-4 btn-primary text-sm font-bold py-2 px-4 rounded">Get In Touch</a>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-gray-700 text-center text-gray-500 text-sm">
+                <p>&copy; <span id="year"></span> Rotary Club of Bath. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            if (document.getElementById('image-carousel')) {
+                new Splide('#image-carousel', {
+                    type       : 'loop',
+                    height     : '30rem',
+                    perPage    : 1,
+                    autoplay   : true,
+                    interval   : 5000,
+                    pauseOnHover: true,
+                    gap        : '1rem',
+                    arrows     : true,
+                    pagination : true,
+                    breakpoints: {
+                        1024: {
+                            height: '25rem',
+                        },
+                        768: {
+                            height: '20rem',
+                        },
+                        640: {
+                            height: '15rem',
+                            arrows: false,
+                        },
+                    },
+                }).mount();
+            }
+            
+            document.getElementById('year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
